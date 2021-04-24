@@ -60,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             );
           },
-          onFetch: () {
+          onNewLoad: () {
             setState(() {
               // change the state of the loading
               // for making the loader visible

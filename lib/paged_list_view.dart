@@ -8,13 +8,13 @@ class PagedListView<T> extends StatelessWidget {
   final List<T> items;
   final bool isLoading;
   final _scrollController = ScrollController();
-  final Function onFetch;
+  final Function onNewLoad;
 
   PagedListView({
     @required this.items,
     @required this.itemBuilder,
     @required this.isLoading,
-    @required this.onFetch,
+    @required this.onNewLoad,
   });
 
   @override
@@ -24,8 +24,8 @@ class PagedListView<T> extends StatelessWidget {
       if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
         // this condition will be execute when you are in bottom of the list
         // then callback function will be trigger which we pass through parameter
-        // will be execute for loading more data
-        this.onFetch();
+        // will be execute for loading more new data
+        this.onNewLoad();
       }
     });
 
