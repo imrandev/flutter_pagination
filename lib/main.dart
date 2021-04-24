@@ -1,0 +1,81 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_pagination/paged_list_view.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      home: MyHomePage(title: 'Flutter Pagination'),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key key, this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+
+  List<String> items;
+  bool isLoading = false;
+
+
+  @override
+  void initState() {
+    items = List.generate(20, (index) => "Item $index");
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: Container(
+        child: PagedListView<String>(
+          items: items,
+          isLoading: isLoading,
+          itemBuilder: (context, item) {
+            return ListTile(
+              title: Text(
+                item,
+              ),
+            );
+          },
+          onFetch: () {
+            setState(() {
+              isLoading = true;
+              fetchNewData();
+            });
+          },
+        ),
+      ),
+    );
+  }
+
+  void fetchNewData() {
+    Future.delayed(Duration(seconds: 5,), (){
+      setState(() {
+        items.addAll(List.generate(20, (index) => "Item $index"));
+        isLoading = false;
+      });
+    });
+  }
+}
