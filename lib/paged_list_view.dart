@@ -22,6 +22,9 @@ class PagedListView<T> extends StatelessWidget {
 
     _scrollController.addListener(() {
       if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent) {
+        // this condition will be execute when you are in bottom of the list
+        // then callback function will be trigger which we pass through parameter
+        // will be execute for loading more data
         this.onFetch();
       }
     });

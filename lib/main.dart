@@ -51,6 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Container(
         child: PagedListView<String>(
           items: items,
+          // 'isLoading' will control the visibility of the loader
           isLoading: isLoading,
           itemBuilder: (context, item) {
             return ListTile(
@@ -61,7 +62,11 @@ class _MyHomePageState extends State<MyHomePage> {
           },
           onFetch: () {
             setState(() {
+              // change the state of the loading
+              // for making the loader visible
               isLoading = true;
+              // now the loading is visible
+              // it's time to fetch new data
               fetchNewData();
             });
           },
@@ -74,6 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
     Future.delayed(Duration(seconds: 5,), (){
       setState(() {
         items.addAll(List.generate(20, (index) => "Item $index"));
+        // after fetching and adding more data, change the loading state
         isLoading = false;
       });
     });
