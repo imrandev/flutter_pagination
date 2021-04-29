@@ -60,7 +60,10 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             );
           },
-          onNewLoad: () {
+          itemPerPage: 10,
+          totalSize: 24,
+          totalPage: 3,
+          onNewLoad: (items, nextPage) {
             setState(() {
               // change the state of the loading
               // for making the loader visible
