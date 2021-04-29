@@ -37,7 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
-    items = List.generate(20, (index) => "Item $index");
+    items = List.generate(15, (index) => "Item $index");
     super.initState();
   }
 
@@ -60,8 +60,8 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             );
           },
-          itemPerPage: 10,
-          totalSize: 24,
+          itemPerPage: 15,
+          totalSize: 45,
           totalPage: 3,
           onNewLoad: (items, nextPage) {
             setState(() {
@@ -81,7 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void fetchNewData() {
     Future.delayed(Duration(seconds: 5,), (){
       setState(() {
-        items.addAll(List.generate(20, (index) => "Item $index"));
+        items.addAll(List.generate(15, (index) => "Item $index"));
         // after fetching and adding more data, change the loading state
         isLoading = false;
       });

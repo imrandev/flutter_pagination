@@ -37,12 +37,12 @@ class PagedListView<T> extends StatelessWidget {
         // this condition will be execute when you are in bottom of the list
         // then callback function will be trigger which we pass through parameter
         // will be execute for loading more data
-        int newLength = totalSize % itemPerPage == 0 ? (totalSize - 1) : totalSize - items.length;
+        int newLength = totalSize % itemPerPage == 0 ? (totalSize - 1) - items.length : totalSize - items.length;
         if (newLength > itemPerPage) {
           int nextPage = totalPage - (newLength/itemPerPage).floor();
           this.onNewLoad(items, nextPage);
         } else {
-          if (newLength == 0) return;
+          if (newLength <= 0) return;
           this.onNewLoad(items, totalPage);
         }
       }
